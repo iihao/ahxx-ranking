@@ -6,7 +6,7 @@ module.exports = (req, res) => {
   if (!req.url.startsWith(prefix)) {
     return;
   }
-  let target = "//jisuye.com/ahxx/" + req.url.substring(prefix.length);
+  let target = "http://jisuye.com/ahxx/" + req.url.substring(prefix.length);
 
   var options = {
     'method': 'GET',
