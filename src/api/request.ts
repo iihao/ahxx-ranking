@@ -1,6 +1,6 @@
 import axios from 'axios'
 const server = axios.create({
-  baseURL: '/api',
+  baseURL: '/backend/',
   timeout: 5000,
 })
 
