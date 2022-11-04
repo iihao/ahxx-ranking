@@ -1,23 +1,25 @@
-// api/proxy.js
-// 该服务为 vercel serve跨域处理
-import { createProxyMiddleware } from 'http-proxy-middleware'
+const request = require('request');
 
-export default (req, res) => {
-  let target = ''
-  // 代理目标地址
-  // 这里使用 backend 主要用于区分 vercel serverless 的 api 路径
-  // target 替换为你跨域请求的服务器 如： http://baidu.com
-  if (req.url.startsWith('/api')) {
-    target = 'http://jisuye.com/ahxx/'
+module.exports = (req, res) => {
+  // proxy middleware options
+  let prefix = "/api"
+  if (!req.url.startsWith(prefix)) {
+    return;
   }
-  // 创建代理对象并转发请求
-  createProxyMiddleware({
-    target,
-    changeOrigin: true,
-    pathRewrite: {
-      // 通过路径重写，去除请求路径中的 `/backend`
-      // 例如 /backend/user/login 将被转发到 https://fanyi-api.baidu.com/user/login
-      '^/api/': '/',
-    },
-  })(req, res)
+  let target = "http://jisuye.com/ahxx/" + req.url.substring(prefix.length);
+
+  var options = {
+    'method': 'GET',
+    'url': target,
+    'headers': {
+      'Notion-Version': res.headers['notion-version'],
+      'Authorization': res.headers['authorization']
+    }
+  };
+  request(options, function (error, response) {
+    if (error) throw new Error(error);
+    res.writeHead(200, {"Content-Type": "application/json"});
+    res.write(response.body);
+    res.end();
+  });
 }
