@@ -12,20 +12,20 @@ export default defineConfig({
     }),
   ],
   //设置代理
-  //   server: {
-  //     https: false,
-  //     host: '0.0.0.0',
-  //     port: 80,
-  //     headers: {
-  //       'Access-Control-Allow-Origin': '*',
-  //     },
+  server: {
+    https: false,
+    host: '0.0.0.0',
+    port: 80,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
 
-  //     proxy: {
-  //       '/api': {
-  //         target: 'http://jisuye.com/ahxx/',
-  //         changeOrigin: true,
-  //         rewrite: (path) => path.replace(/^\/api/, ''),
-  //       },
-  //     },
-  //   },
+    proxy: {
+      '/api': {
+        target: 'http://jisuye.com/ahxx/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })

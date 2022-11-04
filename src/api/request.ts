@@ -1,6 +1,6 @@
 import axios from 'axios'
 const server = axios.create({
-  baseURL: 'http://jisuye.com/ahxx/',
+  baseURL: '/api',
   timeout: 5000,
 })
 
