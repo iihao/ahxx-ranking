@@ -107,7 +107,7 @@ const columns: TableColumnType<TableDataType>[] = [
   {
     title: '经验效率',
     dataIndex: 'jyxl',
-    customRender: ({ record }) => Math.round(record.jyxl / 10000),
+    customRender: ({ record }) => (record.jyxl / 10000).toFixed(1),
     key: 'jyxl',
     sorter: (a: TableDataType, b: TableDataType) => b.jyxl - a.jyxl,
     sortDirections: ['descend', 'ascend'],
@@ -115,7 +115,7 @@ const columns: TableColumnType<TableDataType>[] = [
   {
     title: '金币效率',
     dataIndex: 'jbxl',
-    customRender: ({ record }) => Math.round(record.jbxl / 10000),
+    customRender: ({ record }) => (record.jbxl / 10000).toFixed(1),
     key: 'jbxl',
     sorter: (a: TableDataType, b: TableDataType) => b.jbxl - a.jbxl,
     sortDirections: ['descend', 'ascend'],
