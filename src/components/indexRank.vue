@@ -168,10 +168,10 @@ const columns: TableColumnType<TableDataType>[] = [
     >
       <template #headerCell="{ column }">
         <template v-if="column.key === 'username'">
-          <span>
+          <a>
             <smile-outlined />
             ID
-          </span>
+          </a>
         </template>
       </template>
       <template #bodyCell="{ column, record }">
