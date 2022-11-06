@@ -1,6 +1,6 @@
 import axios from 'axios'
 const server = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 5000,
 })
 
