@@ -151,21 +151,15 @@ const columns: TableColumnType<TableDataType>[] = [
 
 <template>
   <div>
-    <h1
-      style="
-        font-size: 2rem;
-        color: rgb(141 140 140);
-        font-weight: bold;
-        font-weight: 800;
-        font-family: cursive;
-      "
-    >
+    <h1>
       {{ msg }}
     </h1>
     <a-table
       :columns="columns"
       :data-source="data"
       :pagination="false"
+      :loading="data ? false : true"
+      :row-class-name="(_record:any, index:number) => (index % 2 === 1 ? 'table-striped' : null)"
       @change="onChange"
       :scroll="{ scrollToFirstRowOnChange: true, x: 'auto', y: 'auto' }"
       bordered
@@ -180,6 +174,11 @@ const columns: TableColumnType<TableDataType>[] = [
         </template>
       </template>
       <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'username'">
+          <a>
+            {{ record.username }}
+          </a>
+        </template>
         <template v-if="column.key === 'lv'">
           <span>
             {{
@@ -204,11 +203,21 @@ const columns: TableColumnType<TableDataType>[] = [
 </template>
 
 <style scoped>
+h1 {
+  font-size: 2rem;
+  color: rgb(141 140 140);
+  font-weight: bold;
+  font-weight: 800;
+  font-family: cursive;
+}
 .read-the-docs {
   color: #888;
 }
 .ant-table-container {
   display: flex;
   flex-direction: column;
+}
+.ant-table-striped :deep(.table-striped) td {
+  background-color: #fafafa;
 }
 </style>
