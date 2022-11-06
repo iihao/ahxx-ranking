@@ -158,7 +158,6 @@ const columns: TableColumnType<TableDataType>[] = [
       :columns="columns"
       :data-source="data"
       :pagination="false"
-      :loading="data ? false : true"
       :row-class-name="(_record:any, index:number) => (index % 2 === 1 ? 'table-striped' : null)"
       @change="onChange"
       :scroll="{ scrollToFirstRowOnChange: true, x: 'auto', y: 'auto' }"
@@ -199,6 +198,9 @@ const columns: TableColumnType<TableDataType>[] = [
         </template>
       </template>
     </a-table>
+    <template v-if="mainStore.spinning">
+      <a-spin size="large" />
+    </template>
   </div>
 </template>
 

@@ -5,6 +5,7 @@ export const useMainStore = defineStore('main', {
   state: () => {
     return {
       data: [],
+      spinning: true,
     }
   },
   getters: {},
@@ -56,6 +57,7 @@ export const useMainStore = defineStore('main', {
       )
       //console.log(retData)
       this.data = retData
+      this.spinning = false
       return this.data
     },
   },
