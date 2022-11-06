@@ -1,8 +1,8 @@
 // api/proxy.js
 // http://jisuye.com/ahxx/
-const request = require('request');
+import request from 'request';
 
-module.exports = (req, res) => {
+export default (req, res) => {
   // proxy middleware options
   let prefix = "/api"
   if (!req.url.startsWith(prefix)) {
