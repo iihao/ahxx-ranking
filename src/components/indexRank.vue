@@ -6,6 +6,7 @@ import { reactive, onMounted, ref } from 'vue'
 import { computed } from '@vue/reactivity'
 
 type TableDataType = {
+  exp: any
   blessing: any
   die: any
   gjl: any
@@ -43,6 +44,7 @@ const columns: TableColumnType<TableDataType>[] = [
     title: '序号',
     customRender: ({ index }) => index + 1,
     fixed: 'left',
+    width: 50,
   },
   {
     title: 'ID',
@@ -59,8 +61,11 @@ const columns: TableColumnType<TableDataType>[] = [
     dataIndex: 'lv',
     key: 'lv',
     defaultSortOrder: 'descend',
-    sortDirections: ['descend'],
-    sorter: (a: TableDataType, b: TableDataType) => a.lv - b.lv,
+    sortDirections: ['descend', 'ascend'],
+    sorter: (a: TableDataType, b: TableDataType) => {
+      if (a.lv == b.lv) return a.exp - b.exp
+      return a.lv - b.lv
+    },
     width: 100,
   },
   {
