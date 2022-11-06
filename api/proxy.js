@@ -1,24 +1,27 @@
 // api/proxy.js
 // http://jisuye.com/ahxx/
-import { createProxyMiddleware } from 'http-proxy-middleware'
+const request = require('request');
 
-export default (req, res) => {
-  let target = ''
-
-  // 代理目标地址
-  // xxxxx 替换为你跨域请求的服务器 如： http://baidu.com
-  if (req.url.startsWith('/api')) {
-  // 这里填目标地址
-    target = 'http://jisuye.com/ahxx/'
+module.exports = (req, res) => {
+  // proxy middleware options
+  let prefix = "/api"
+  if (!req.url.startsWith(prefix)) {
+    return;
   }
-  // 创建代理对象并转发请求
-  createProxyMiddleware({
-    target,
-    changeOrigin: true,
-    pathRewrite: {
-      // 通过路径重写，去除请求路径中的 `/api`
-      // 例如 /api/user/login 将被转发到 http://target/user/login
-      '^/api/': '/'
+  let target = "http://jisuye.com/ahxx/" + req.url.substring(prefix.length);
+
+  var options = {
+    'method': 'GET',
+    'url': target,
+    'headers': {
+      'Notion-Version': res.headers['notion-version'],
+      'Authorization': res.headers['authorization']
     }
-  })(req, res)
+  };
+  request(options, function (error, response) {
+    if (error) throw new Error(error);
+    res.writeHead(200, {"Content-Type": "application/json"});
+    res.write(response.body);
+    res.end();
+  });
 }
