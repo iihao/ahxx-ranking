@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useMainStore } from '../store'
 import type { TableColumnType, TableProps } from 'ant-design-vue'
-import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue'
-import { reactive, onMounted, ref } from 'vue'
-import { computed } from '@vue/reactivity'
+import { SmileOutlined } from '@ant-design/icons-vue'
+import {  ref } from 'vue'
+
 
 type TableDataType = {
   exp: any
@@ -22,7 +22,7 @@ type TableDataType = {
   gold: number
   isWF: string
 }
-type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
+// type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 defineProps<{ msg: string }>()
 //store
 const mainStore = useMainStore()
