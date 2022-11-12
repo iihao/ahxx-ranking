@@ -8,11 +8,8 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
-    ASpace: typeof import('ant-design-vue/es')['Space']
     ASpin: typeof import('ant-design-vue/es')['Spin']
     ATable: typeof import('ant-design-vue/es')['Table']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IndexRank: typeof import('./src/components/indexRank.vue')['default']
-    RankIndex: typeof import('./src/components/rankIndex.vue')['default']
   }
 }

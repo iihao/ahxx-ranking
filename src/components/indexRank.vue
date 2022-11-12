@@ -32,9 +32,9 @@ mainStore.getInfoInit().then((res: any) => {
 
 const data = ref([])
 const onChange: TableProps<TableDataType>['onChange'] = (
-  pagination,
-  filters,
-  sorter
+  pagination: any,
+  filters: any,
+  sorter: any
 ) => {
   console.log('params', pagination, filters, sorter)
 }
@@ -158,6 +158,7 @@ const columns: TableColumnType<TableDataType>[] = [
       :columns="columns"
       :data-source="data"
       :pagination="false"
+      :loading="mainStore.spinning"
       :row-class-name="(_record:any, index:number) => (index % 2 === 1 ? 'table-striped' : null)"
       @change="onChange"
       :scroll="{ scrollToFirstRowOnChange: true, x: 'auto', y: 'auto' }"
@@ -198,9 +199,9 @@ const columns: TableColumnType<TableDataType>[] = [
         </template>
       </template>
     </a-table>
-    <template v-if="mainStore.spinning">
-      <a-spin size="large" />
-    </template>
+<!--    <template v-if="mainStore.spinning">-->
+<!--      <a-spin size="large" />-->
+<!--    </template>-->
   </div>
 </template>
 
